@@ -9,7 +9,7 @@ class AppTest extends Specification {
     def "application works"() {
 
         when:
-        App.main('../')
+        App.main('programa_da_noite', '../')
 
         then:
         noExceptionThrown()

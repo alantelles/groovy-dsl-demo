@@ -18,7 +18,11 @@ class PlayerService {
         evaluatedPlaylist.analyzeGenres()
     }
 
-    static Playlist loadPlaylist(String playlistName, String root) {
+    static PlayerService carregaPlaylist(String playlistName, String root) {
+        return new PlayerService(playlistName, root)
+    }
+
+    private static Playlist loadPlaylist(String playlistName, String root) {
         try {
             File file = new File(getPlaylistPath(playlistName, root))
             String script = "import static dsldemo.dsl.PlaylistDsl.playlist\n\n" + file.text

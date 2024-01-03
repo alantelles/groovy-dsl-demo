@@ -3,15 +3,21 @@
  */
 package dsldemo
 
+import static dsldemo.PlayerService.carregaPlaylist
 import static dsldemo.dsl.ArtistDsl.artist
 import static dsldemo.enums.Genre.*
 
 class App {
 
     static void main(String[] args) {
+        List<String> argsList = args.toList()
         setArtists()
-        String root = args.toList()[0] ?: '.'
-        PlayerService service = new PlayerService('programa_da_noite', root)
+        if (argsList.size() < 1) {
+            throw new IllegalArgumentException("Playlist não informada!")
+        }
+        String playlistName = argsList[0]
+        String root = argsList[1] ?: '.'
+        PlayerService service = carregaPlaylist(playlistName, root)
         service.analyzeGenres()
         service.play()
     }
