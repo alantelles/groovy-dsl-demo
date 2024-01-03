@@ -10,7 +10,8 @@ class App {
 
     static void main(String[] args) {
         setArtists()
-        PlayerService service = new PlayerService('programa_da_noite')
+        String root = args.toList()[0] ?: '.'
+        PlayerService service = new PlayerService('programa_da_noite', root)
         service.analyzeGenres()
         service.play()
     }
