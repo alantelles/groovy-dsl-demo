@@ -2,6 +2,8 @@ package dsldemo.dsl
 
 import spock.lang.Specification
 
+import static dsldemo.dsl.CaminhadaDsl.caminhadas
+
 
 class DemoDslSpec extends Specification {
 
@@ -44,6 +46,23 @@ class DemoDslSpec extends Specification {
 
         then:
         noExceptionThrown()
+    }
+
+    def "caminhada dsl funciona"() {
+
+        when:
+        caminhadas {
+            caminhe 4.metros vire 1.meiaVolta pare 2.horas caminhe 6.metros termine
+            descreva
+            novaCaminhada
+            caminhe 2.passos vire 90.graus pare 1.minuto termine
+            descreva
+            novaCaminhada
+        }
+
+        then:
+        noExceptionThrown()
+
     }
 
 }

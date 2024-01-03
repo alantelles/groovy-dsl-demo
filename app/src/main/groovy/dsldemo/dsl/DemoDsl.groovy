@@ -37,4 +37,9 @@ class DemoDsl {
         return descreva()
     }
 
+    DemoDsl getNovaCaminhada() {
+        percurso = []
+        return this
+    }
+
 }
