@@ -3,31 +3,23 @@
  */
 package dsldemo
 
-import static dsldemo.dsl.ArtistDsl.artist
-import static dsldemo.enums.Genre.*
+import dsldemo.data.DummyData
+
+import static dsldemo.PlayerService.carregaPlaylist
 
 class App {
 
     static void main(String[] args) {
-        setArtists()
-        PlayerService service = new PlayerService('programa_da_noite')
+        List<String> argsList = args.toList()
+        DummyData.setArtists()
+        if (argsList.size() < 1) {
+            throw new IllegalArgumentException("Playlist não informada!")
+        }
+        String playlistName = argsList[0]
+        String root = argsList[1] ?: '.'
+        PlayerService service = carregaPlaylist(playlistName, root)
         service.analyzeGenres()
         service.play()
-    }
-
-    static void setArtists() {
-        artist(
-                name: 'Pages',
-                genre: AOR
-        )
-        artist(
-                name: 'Natalie Imbruglia',
-                genre: POP
-        )
-        artist(
-                name: 'The Weeknd',
-                genre: RNB
-        )
     }
 
 }

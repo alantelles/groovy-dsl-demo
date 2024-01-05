@@ -6,14 +6,12 @@ package dsldemo
 import spock.lang.Specification
 
 class AppTest extends Specification {
-    def "application has a greeting"() {
-        setup:
-        def app = new App()
+    def "application works"() {
 
         when:
-        def result = app.greeting
+        App.main('programa_da_noite', '../')
 
         then:
-        result != null
+        noExceptionThrown()
     }
 }
